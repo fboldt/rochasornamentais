@@ -1,0 +1,31 @@
+Documentação - Como foram criados os grafos
+
+Coautoria:
+Nó do grafo: autor
+Link do grafo: produziram juntos
+Obs: só foram selecionados autores que produziram mais de um artigo juntos
+
+Cocitação de autores:
+Dois autores são cocitados quando um terceiro os cita conjuntamente.
+Se C cita A e B, e D cita A e B, então A e B são cocitados por C e D.
+Nó do grafo: autor
+Link do grafo: Os dois autores terem sido citados juntos.
+Obs: só foram mostrado no grafo os links de quando houve mais de uma cocitação
+
+Cocitação de fontes de periódico:
+Nó do grafo: periódico
+Link do grafo: 
+O artigo C cita o artigo do periódico A e o artigo do periódico B. O link do grafo é o artigo C.
+Obs: só foram mostrados links com mais de uma citação em conjunto
+
+Coocorrência de palavras-chave
+Nó: palavra-chave
+Link: ter aparecido junto em um mesmo artigo
+Obs: só foram selecionados links de coocorrência maior ou igual a 5
+
+Mapeamento de fontes de periódico
+Nó: Perióco
+Link: artigo do periódico A cita artigo do periódico B ou artigo do periódico B cita artigo do periódico A (não direcional)
+
+
+Os grafos foram clusterizados utilizando community detection com o algoritmo de Girvon-Newman.

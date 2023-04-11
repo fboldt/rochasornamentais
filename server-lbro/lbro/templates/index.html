@@ -1,0 +1,112 @@
+{% csrf_token %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Search Engine</title>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/ripple.css' %}">
+    <script>
+        if (localStorage.getItem('email') == null || localStorage.getItem('password') == null) {
+            window.location.href = '/login/';
+        }
+    </script>
+</head>
+<body>
+
+    <div id="app">
+
+        <header>
+            <div class="title" onclick="window.location.href='/'">
+                Search Engine
+                <i class="fa fa-search"></i>
+            </div>
+            <div class="actions">
+                <div class="item queries-button">
+                    <i class="fa fa-edit" @click="showModalQueries" ripple>
+                        <span> Chaves de busca</span>
+                    </i>
+                </div>
+                <div class="item">
+                    <i class="fa fa-search" @click="initSearch" ripple>
+                        <span> Iniciar busca</span>
+                    </i>
+                </div>
+                <div class="item">
+                    <i class="fa fa-sign-out" @click="logout" ripple>
+                        <span> Sair</span>
+                    </i>
+                </div>
+            </div>
+        </header>
+
+        <main v-if="listingTable.length">
+            <div class="list--articles">
+                <div class="subtitle">
+                    Resultados
+                </div>
+                <ba-article
+                    v-for='article in listingTable' v-if="article"
+                    v-bind:key='article.id'
+                    v-bind='article'></ba-article>
+            </div>
+            <div class="pagination">
+                <div class="item">
+                    <i v-if="btnPrev" class="fa fa-angle-left" @click="prevPage" ripple>
+                        <span> Anterior</span>
+                    </i>
+                </div>
+                <div class="item">
+                    <i v-if="btnNext" class="fa not-fa" @click="nextPage" ripple>
+                        <span>Próximo</span>
+                        <i class="fa fa-angle-right"></i>
+                    </i>
+                </div>
+            </div>
+        </main>
+
+        <main v-if="listingTable.length == 0">
+            <div class="list--articles">
+                <div class="subtitle" style="height: 100vw;">
+                    Não há artigos inseridos.
+                </div>
+            </div>
+        </main>
+
+        <footer>
+
+        </footer>
+
+        <!-- Modals -->
+        <div class="modal" :class="{ visible: showModal }" @click.self="showModalQueries" @keydown.esc="showModalQueries" tabindex="0">
+            <div class="modal-content">
+                <div class="header">
+                    <form v-on:submit="insertQuery" onsubmit="return false;">
+                        <input type="text" name="query" id="query" v-model="query" ref="inputQuery" required="required">
+                        <button type="submit" ripple>Adicionar</button>
+                    </form>
+                    <div class="item">
+                        <i class="fa fa-close close" @click="showModalQueries" ripple></i>
+                    </div>
+                </div>
+                <div class="list--queries">
+                    <ba-queries
+                        v-for='queryInserted in listQuery.slice().reverse()'
+                        v-bind:key='queryInserted.id'
+                        v-bind='queryInserted'></ba-queries>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="{% static 'js/vue.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/fontawesome.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/ripple.js' %}"></script>
+    
+</body>
+</html>

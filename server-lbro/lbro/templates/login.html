@@ -1,0 +1,61 @@
+{% csrf_token %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/ripple.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/login.css' %}">
+    <script>
+        if (localStorage.getItem('email') != null || localStorage.getItem('password') != null) {
+            window.location.href = '/';
+        }
+    </script>
+</head>
+<body>
+
+    <div id="app">
+
+        <div class="container">
+                        
+            <div class="content first-content">
+                <div class="first-column">
+                    <h2 class="title title-primary">Olá!</h2>
+                    <p class="description description-primary">Para se manter conectado</p>
+                    <p class="description description-primary">por favor, faça login com suas informações pessoais</p>
+                </div>
+                <div class="second-column">
+                    <h2 class="title title-second">Entrar</h2>
+                    <p class="description description-second">Use seu email</p>
+
+                    <form class="form" v-on:submit="login" onsubmit="return false;">
+                        <label class="label-input" for="">
+                            <i class="far fa-user-circle icon-modify"></i>
+                            <input type="email" placeholder="Email" v-model="emailLogin" required>
+                        </label>
+                                           
+                        <label class="label-input" for="">
+                            <i class="fas fa-lock icon-modify"></i>
+                            <input type="password" placeholder="Senha" v-model="passwordLogin" required>
+                        </label>
+                        <!-- <a class="password" href="#">Esqueceu sua senha?</a> -->
+                        <button class="btn btn-second" ripple>Entrar</button>                            
+                    </form>
+
+                </div> 
+            </div>
+
+        </div>
+
+    </div>
+    
+    <script type="text/javascript" src="{% static 'js/vue.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/ripple.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/fontawesome.js' %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,3 @@
+[submodule "enginesearch"]
+	path = lbro/enginesearch
+	url = git@gitlab.com:bibliometria-automatizada/custom-search.git

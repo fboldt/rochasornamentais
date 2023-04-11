@@ -1,0 +1,26 @@
+header {
+    box-shadow: 0 3px 7px 1px rgba(0, 0, 0, .1);
+}
+
+main {
+    max-width: 720px !important;
+    margin: 24px auto;
+}
+
+main li, 
+main .card {
+    margin: 7px 0 7px 0 !important;
+    box-shadow: 0 3px 7px 1px rgba(0, 0, 0, .1);
+}
+main li {
+    line-height: 34px;
+}
+
+main .card a.btn {
+    margin-left: 5px;
+    box-shadow: 0 3px 7px 1px rgba(0, 0, 0, .1);
+}
+
+main ul li a {
+    float: right;
+}
